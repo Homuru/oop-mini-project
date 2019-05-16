@@ -1,54 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleButton?>
-<?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.shape.*?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.text.Font?>
 
-<GridPane alignment="CENTER" hgap="10.0" prefHeight="536.0" prefWidth="600.0" vgap="10.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="sample.Controller">
+<GridPane alignment="CENTER" hgap="10.0" prefHeight="536.0" prefWidth="600.0" vgap="10.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
   <children>
     <Pane prefHeight="570.0" prefWidth="600.0">
       <children>
         <Line endX="545.0" layoutX="55.0" layoutY="233.0" startX="-55.0" />
-        <TextField fx:id="massInput" layoutX="58.0" layoutY="340.0" prefHeight="26.0" prefWidth="197.0" text="1" />
+        <TextField fx:id="massInput" layoutX="100.0" layoutY="340.0" prefHeight="26.0" prefWidth="197.0" />
         <Rectangle fx:id="wall" arcHeight="5.0" arcWidth="5.0" fill="#6e7780" height="200.0" layoutX="533.0" layoutY="34.0" stroke="BLACK" strokeType="INSIDE" width="66.0" />
         <Circle fx:id="object" fill="DODGERBLUE" layoutX="100.0" layoutY="200.0" radius="33.0" stroke="BLACK" strokeType="INSIDE" />
-        <TextField fx:id="forceInput" layoutX="58.0" layoutY="386.0" prefHeight="26.0" prefWidth="197.0" promptText="VD: 3 or 4;-5;6;-7" text="0" />
-        <ToggleButton fx:id="toggleWallBtn" layoutX="275.0" layoutY="439.0" mnemonicParsing="false" onAction="#toggleWall" prefHeight="38.1328125" text="Wall" />
-        <Button id="applyForceBtn" fx:id="Start" disable="true" focusTraversable="true" layoutX="396.0" layoutY="340.0" mnemonicParsing="false" onAction="#start" prefHeight="52.0" prefWidth="141.0" text="Start">
+        <TextField fx:id="forceInput" layoutX="100.0" layoutY="386.0" prefHeight="26.0" prefWidth="197.0" />
+        <ToggleButton fx:id="toggleWallBtn" layoutX="314.0" layoutY="347.0" mnemonicParsing="false" onAction="#toggleWall" prefHeight="38.1328125" text="Wall" />
+        <Button id="applyForceBtn" fx:id="start" disable="true" focusTraversable="true" layoutX="396.0" layoutY="340.0" mnemonicParsing="false" onAction="#start" prefHeight="52.0" prefWidth="141.0" text="Start">
           <font>
             <Font name="System Bold" size="18.0" fx:id="x1" />
           </font>
         </Button>
-        <MenuButton layoutX="396.0" layoutY="250.0" mnemonicParsing="false" prefHeight="38.1328125" prefWidth="172.0" text="NewTon's Laws">
+        <MenuButton fx:id="menuBtn" layoutX="396.0" layoutY="250.0" mnemonicParsing="false" prefHeight="38.1328125" prefWidth="172.0" text="Newton's Laws">
           <items>
-            <MenuItem mnemonicParsing="false" onAction="#law1" text="Law1" />
-            <MenuItem mnemonicParsing="false" onAction="#law2" text="Law2" />
-            <MenuItem mnemonicParsing="false" onAction="#law3" text="Law3" />
+            <MenuItem mnemonicParsing="false" onAction="#law1" text="First Law" />
+            <MenuItem mnemonicParsing="false" onAction="#law2" text="Second Law" />
+            <MenuItem mnemonicParsing="false" onAction="#law3" text="Third Law" />
           </items>
         </MenuButton>
-        <TextField fx:id="inputV0" layoutX="58.0" layoutY="293.0" prefHeight="26.0" prefWidth="197.0" text="0" />
-        <Label fx:id="v0" layoutX="14.0" layoutY="293.0" prefHeight="26.0" text="v0" />
-        <Label fx:id="f" layoutX="14.0" layoutY="386.0" prefHeight="26.0" text="F" />
-        <Label fx:id="m" layoutX="14.0" layoutY="340.0" prefHeight="26.0" text="m" />
-        <TextArea fx:id="outPut" layoutX="58.0" layoutY="425.0" prefHeight="79.0" prefWidth="197.0" wrapText="true" />
-        <Label fx:id="title" layoutX="58.0" layoutY="245.0" prefHeight="26.0" prefWidth="242.0" text="NewTon's laws of motion" textFill="#1000cc" underline="true">
+        <TextField fx:id="velocityInput" layoutX="100.0" layoutY="293.0" prefHeight="26.0" prefWidth="197.0" />
+        <Label fx:id="v0" layoutX="14.0" layoutY="293.0" prefHeight="26.0" text="Velocity" />
+        <Label fx:id="f" layoutX="14.0" layoutY="386.0" prefHeight="26.0" text="Force" />
+        <Label fx:id="m" layoutX="14.0" layoutY="340.0" prefHeight="26.0" text="Mass" />
+        <TextArea fx:id="output" layoutX="100.0" layoutY="425.0" prefHeight="79.0" prefWidth="197.0" wrapText="true" />
+        <Label fx:id="title" layoutX="58.0" layoutY="245.0" prefHeight="26.0" prefWidth="242.0" text="Newton's Laws of Motion" textFill="#1000cc" underline="true">
           <font>
             <Font name="System Bold" size="17.0" />
           </font>
         </Label>
         <Button fx:id="Reset" font="$x1" layoutX="396.0" layoutY="412.0" mnemonicParsing="false" onAction="#reset" prefHeight="52.0" prefWidth="141.0" text="Reset" />
+            <Label fx:id="v01" layoutX="17.0" layoutY="451.0" prefHeight="26.0" text="Output" />
       </children>
     </Pane>
   </children>

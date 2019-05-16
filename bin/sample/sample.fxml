@@ -26,13 +26,13 @@
         <Circle fx:id="object" fill="DODGERBLUE" layoutX="100.0" layoutY="200.0" radius="33.0" stroke="BLACK" strokeType="INSIDE" />
         <TextField fx:id="forceInput" layoutX="67.0" layoutY="383.0" prefHeight="26.0" prefWidth="179.0" promptText="VD: -5;6;7;8" text="0" />
         <ToggleButton fx:id="toggleWallBtn" layoutX="271.0" layoutY="425.0" mnemonicParsing="false" onAction="#toggleWall" prefHeight="37.1328125" text="Wall" />
-        <Button id="applyForceBtn" fx:id="Start" disable="true" focusTraversable="true" layoutX="412.0" layoutY="350.0" mnemonicParsing="false" onAction="#start" opacity="1.0" prefHeight="37.1328125" prefWidth="141.0" text="Start" textFill="#292929" visible="true">
+        <Button id="applyForceBtn" fx:id="start" disable="true" focusTraversable="true" layoutX="412.0" layoutY="350.0" mnemonicParsing="false" onAction="#start" opacity="1.0" prefHeight="37.1328125" prefWidth="141.0" text="Start" textFill="#292929" visible="true">
           <font>
             <Font name="System Bold" size="18.0" fx:id="x1" />
           </font>
         </Button>
         <TextField fx:id="inputv0" layoutX="67.0" layoutY="302.0" prefHeight="26.000099999997474" prefWidth="179.0" text="0" />
-        <TextArea fx:id="outPut" layoutX="65.0" layoutY="434.0" prefHeight="44.1328125" prefWidth="179.0" wrapText="true" />
+        <TextArea fx:id="output" layoutX="65.0" layoutY="434.0" prefHeight="44.1328125" prefWidth="179.0" wrapText="true" />
         <Label fx:id="v0" layoutX="28.0" layoutY="307.0" prefHeight="-1.0" prefWidth="37.0" text="v0" textAlignment="JUSTIFY" />
         <Label fx:id="m" layoutX="28.0" layoutY="350.0" minHeight="-1.0" prefHeight="-1.0" prefWidth="37.0" text="m" underline="false" />
         <Label layoutX="28.0" layoutY="391.0" minHeight="-1.0" prefHeight="-1.0" prefWidth="37.0" text="F" />

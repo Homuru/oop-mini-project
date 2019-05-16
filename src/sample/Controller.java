@@ -2,11 +2,7 @@ package sample;
 
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleButton;
+import javafx.scene.control.*;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
@@ -25,26 +21,30 @@ public class Controller {
     @FXML
     private TextField forceInput;
     @FXML
-    private TextField inputV0;
+    private TextField velocityInput;
     @FXML
-    private TextArea outPut;
-    @FXML
-    private Label v0;
-    @FXML
-    private Label m;
+    private TextArea output;
     @FXML
     private Label title;
     @FXML
-    private Button Start;
+    private Button start;
     @FXML
-    private Button Reset;
-    public TranslateTransition transition = new TranslateTransition();
+	private MenuButton menuBtn;
+
+
+    private TranslateTransition transition = new TranslateTransition();
 
 
     @FXML
     public void initialize() {
-        wall.setVisible(false);
+    	wall.setVisible(false);
+    	massInput.setDisable(true);
+    	forceInput.setDisable(true);
+    	velocityInput.setDisable(true);
+    	output.setDisable(true);
+		start.setDisable(true);
     }
+
     @FXML
     public void toggleWall() {
         if(toggleWallBtn.isSelected()) {
@@ -75,7 +75,7 @@ public class Controller {
     			action1();
     		}
     		else {
-    			outPut.setText(outPut.getText().concat("\n" + "Vat chuyen dong nhanh dan deu!"+ "\n Default: m = 1"));
+    			output.setText(output.getText().concat("\n" + "Vat chuyen dong nhanh dan deu!"+ "\n Default: m = 1"));
     			action2();
     		}
     	}else if(laws() == 2) {
@@ -89,8 +89,10 @@ public class Controller {
     public void reset() {
     	if(laws() == 1) {
     		toggleWallBtn.setDisable(false);
-    		outPut.setText(null);
-    		object.setLayoutX(object.getLayoutX() - transition.getByX());
+    		output.setText(null);
+    		transition.stop();
+//    		object.setLayoutX(object.getLayoutX() - transition.getByX());
+    		object.setTranslateX(0);
     	}
     	else if(laws() == 2) {
     		
@@ -101,33 +103,28 @@ public class Controller {
     }
     public void law1() {
     	title.setText("First Law");
-    	m.setDisable(true);
-    	massInput.setDisable(true);
-    	v0.setDisable(false);
-    	v0.setDisable(false);
-    	Start.setDisable(false);
+		menuBtn.setText("First Law");
+    	forceInput.setText("0");
+    	velocityInput.setDisable(false);
+    	start.setDisable(false);
+    	output.setDisable(false);
     }
     public void law2() {
     	title.setText("Second Law");
-    	m.setDisable(false);
+    	menuBtn.setText("Second Law");
     	massInput.setDisable(false);
-    	v0.setDisable(true);
-    	v0.setDisable(true);
-    	Start.setDisable(false);
+    	start.setDisable(false);
     }
     public void law3() {
     	title.setText("Third Law");
-    	m.setDisable(false);
     	massInput.setDisable(false);
-    	v0.setDisable(true);
-    	v0.setDisable(true);
-    	Start.setDisable(false);
+    	start.setDisable(false);
     }
     public boolean setV0() {
-    	float v = Float.parseFloat(inputV0.getText());
+    	float v = Float.parseFloat(velocityInput.getText());
     	ob.setV(v);
-    	outPut.setText(outPut.getText().concat("\n" + "v0 = " + inputV0.getText()));
-    	//System.out.println("v = " + outPut.getText());
+    	output.setText(output.getText().concat("\n" + "v0 = " + velocityInput.getText()));
+    	//System.out.println("v = " + output.getText());
     	if(v == 0) return false;
     	else return true;
     }
@@ -148,17 +145,17 @@ public class Controller {
     		sum += f[i];
     		i++;
     	}
-    	outPut.setText("F = "+ sum);
+    	output.setText("F = "+ sum);
     	return sum;
     }
     public void action2() {	//check lai
     	float m = Float.parseFloat(massInput.getText());
     	ob.setMass(m);
-    	if(m <= 0) outPut.setText(outPut.getText().concat("Error: m = " + m + "??"));
+    	if(m <= 0) output.setText(output.getText().concat("Error: m = " + m + "??"));
     	else {
     		ob.setA(sumForce(), ob.getMass());
     		float a = ob.getA();
-    		outPut.setText(outPut.getText().concat("\n" + "a = " + a));
+    		output.setText(output.getText().concat("\n" + "a = " + a));
     		int t = 5, i = 1;
     		while(i<=t) {
     			float v = a*i;
