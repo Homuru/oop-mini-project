@@ -2,34 +2,34 @@ package sample;
 
 public class Object {
 
-    private float mass;
-    private float v;
-    private float a;
+    private double mass;
+    private double v;
+    private double a;
 
-    public float getV() {
+    public double getV() {
 		return v;
 	}
 
-	public void setV(float v) {
+	public void setV(double v) {
 		this.v = v;
 	}
 
-	public float getA() {
+	public double getA() {
 		return a;
 	}
 
-	public void setA(float a) {
+	public void setA(double a) {
 		this.a = a;
 	}
-	public void setA(float f, float m) {
+	public void setA(double f, double m) {
 		this.a = f/m;
 	}
 
-	public float getMass() {
+	public double getMass() {
         return mass;
     }
 
-    public void setMass(float mass) {
+    public void setMass(double mass) {
         this.mass = mass;
     }
 }
