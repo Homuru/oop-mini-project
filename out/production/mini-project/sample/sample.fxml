@@ -20,8 +20,7 @@
     <Pane prefHeight="570.0" prefWidth="600.0">
       <children>
         <Line endX="545.0" layoutX="55.0" layoutY="233.0" startX="-55.0" />
-        <TextField fx:id="massInput" layoutX="100.0" layoutY="340.0" prefHeight="26.0" prefWidth="197.0" />
-        <Rectangle fx:id="wall" arcHeight="5.0" arcWidth="5.0" fill="#6e7780" height="200.0" layoutX="533.0" layoutY="34.0" stroke="BLACK" strokeType="INSIDE" width="66.0" />
+        <TextField fx:id="massInput" layoutX="100.0" layoutY="314.0" prefHeight="26.0" prefWidth="197.0" />
         <Circle fx:id="object" fill="DODGERBLUE" layoutX="100.0" layoutY="200.0" radius="33.0" stroke="BLACK" strokeType="INSIDE" />
         <TextField fx:id="forceInput" layoutX="100.0" layoutY="379.0" prefHeight="26.0" prefWidth="197.0" />
         <Button id="applyForceBtn" fx:id="start" disable="true" focusTraversable="true" layoutX="396.0" layoutY="340.0" mnemonicParsing="false" onAction="#start" prefHeight="52.0" prefWidth="141.0" text="Start">
@@ -36,10 +35,10 @@
             <MenuItem mnemonicParsing="false" onAction="#law3" text="Third Law" />
           </items>
         </MenuButton>
-        <TextField fx:id="velocityInput" layoutX="100.0" layoutY="293.0" prefHeight="26.0" prefWidth="197.0" />
-        <Label fx:id="v0" layoutX="14.0" layoutY="293.0" prefHeight="26.0" text="Velocity" />
+        <TextField fx:id="velocityInput" layoutX="100.0" layoutY="279.0" prefHeight="26.0" prefWidth="197.0" />
+        <Label fx:id="v0" layoutX="14.0" layoutY="279.0" prefHeight="26.0" text="Velocity" />
         <Label fx:id="f" layoutX="12.0" layoutY="379.0" prefHeight="26.0" text="Force" />
-        <Label fx:id="m" layoutX="14.0" layoutY="340.0" prefHeight="26.0" text="Mass" />
+        <Label fx:id="m" layoutX="13.0" layoutY="314.0" prefHeight="26.0" text="Mass" />
         <TextArea fx:id="output" layoutX="100.0" layoutY="451.0" prefHeight="66.0" prefWidth="197.0" wrapText="true" />
         <Label fx:id="title" layoutX="58.0" layoutY="245.0" prefHeight="26.0" prefWidth="242.0" text="Newton's Laws of Motion" textFill="#1000cc" underline="true">
           <font>
@@ -50,6 +49,7 @@
             <Label fx:id="v01" layoutX="17.0" layoutY="465.0" prefHeight="26.0" text="Output" />
             <Label layoutX="14.0" layoutY="419.0" prefHeight="26.0" text="Time" />
             <TextField fx:id="timeInput" layoutX="100.0" layoutY="419.0" prefHeight="26.0" prefWidth="197.0" />
+            <Rectangle fx:id="wall" arcHeight="5.0" arcWidth="5.0" fill="#718394" height="200.0" layoutX="533.0" layoutY="34.0" stroke="BLACK" strokeType="INSIDE" width="66.0" />
       </children>
     </Pane>
   </children>
