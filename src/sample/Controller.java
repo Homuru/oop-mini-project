@@ -1,7 +1,5 @@
 package sample;
 
-import javafx.animation.SequentialTransition;
-import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.shape.Circle;
@@ -10,7 +8,9 @@ import javafx.scene.shape.Rectangle;
 
 public class Controller {
 
-    private Object ob = new Object();
+    Law1 law1 = new Law1();
+    Law2 law2 = new Law2();
+    Law3 law3 = new Law3();
 
     @FXML
     private Circle object;
@@ -43,8 +43,9 @@ public class Controller {
     }
 
     public void reset() {
-        ob.stop();
-        object.setTranslateX(0);
+        if(getCase() == 1) law1.reset(this.object);
+        else if(getCase() == 2) law2.reset(this.object);
+        else law3.reset(this.object);
     }
 
     public int getCase() {
@@ -104,37 +105,19 @@ public class Controller {
     }
 
     public void action1() {
-        ob.setV(Double.parseDouble(velocityInput.getText()));
-        TranslateTransition transition = AnimationUtils.createTranslateTransition(this.object, 1000, 1000 / ob.getV());
-        ob.setAnimation(transition);
-        ob.play();
+        double v = Double.parseDouble(velocityInput.getText());
+        law1.start(this.object, v, 0, 0, 0);
     }
 
     public void action2() {
         double time = Double.parseDouble(timeInput.getText());
-        ob.setMass(Double.parseDouble(massInput.getText()));
-        double frictionForce = Physics.getFrictionForce(ob.getMass());
+        double m = Double.parseDouble(massInput.getText());
         double force = Double.parseDouble(forceInput.getText());
-        ob.setA(Physics.getAcceleration(force - frictionForce, ob.getMass()));
-        double s1 = Physics.getDistance(0, ob.getA(), time);
-        TranslateTransition trans1 = AnimationUtils.createTranslateTransition(this.object, s1, time);
-        double v1 = Physics.getVelocityByTime(0, ob.getA(), time);
-        ob.setA(Physics.getAcceleration(frictionForce, ob.getMass()));
-        double time2 = Physics.getTimeByVelocity(0, v1, -ob.getA());
-        double s2 = Physics.getDistance(v1, -ob.getA(), time2);
-        TranslateTransition trans2 = AnimationUtils.createTranslateTransition(this.object, s2, time2);
-        SequentialTransition transition = AnimationUtils.createSequentialTransition(this.object, trans1, trans2);
-        ob.setAnimation(transition);
-        ob.play();
+        law2.start(this.object, 0, time, m, force);
     }
 
     public void action3() {
-        ob.setV(Double.parseDouble(velocityInput.getText()));
-        TranslateTransition trans1 = AnimationUtils.createTranslateTransition(this.object, 400, 400 / ob.getV());
-        TranslateTransition trans2 = AnimationUtils.createTranslateTransition(this.object, -1000, 1000 / ob.getV());
-        SequentialTransition transition = AnimationUtils.createSequentialTransition(this.object, trans1, trans2);
-        ob.setAnimation(transition);
-        ob.play();
+        double v = Double.parseDouble(velocityInput.getText());
+        law3.start(this.object, v, 0,0,0);
     }
 }
-
