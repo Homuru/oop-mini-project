@@ -2,34 +2,38 @@ package sample;
 
 import javafx.animation.SequentialTransition;
 import javafx.animation.TranslateTransition;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 
+import javax.swing.*;
+
 
 public class Controller {
 
-    private Object ob = new Object();
+    protected Object ob = new Object();
 
     @FXML
-    private Circle object;
+    protected Circle object;
     @FXML
-    private Rectangle wall;
+    protected Rectangle wall;
     @FXML
-    private TextField massInput;
+    protected TextField massInput;
     @FXML
-    private TextField forceInput;
+    protected TextField forceInput;
     @FXML
-    private TextField velocityInput;
+    protected TextField velocityInput;
     @FXML
-    private Label title;
+    protected Label title;
     @FXML
-    private Button start;
+    protected Button start;
     @FXML
-    private MenuButton menuBtn;
+    protected MenuButton menuBtn;
     @FXML
-    private TextField timeInput;
+    protected TextField timeInput;
 
 
     @FXML
@@ -47,94 +51,38 @@ public class Controller {
         object.setTranslateX(0);
     }
 
-    public int getCase() {
+    public Law getCase() {
         String s = title.getText();
-        if (s.equals("First Law")) return 1;
-        else if (s.equals("Second Law")) return 2;
-        else if (s.equals("Third Law")) return 3;
-        return 0;
-    }
-
-    @FXML
-    public void start() {
-        int choice = getCase();
-        if (choice == 1) {
-            action1();
-        } else if (choice == 2) {
-            action2();
-        } else if (choice == 3) {
-            action3();
+//        System.out.println(s);
+        if (s.equals("First Law")) {
+            System.out.println("law 1");
+            return new Law1();
         }
+        else if (s.equals("Second Law")){
+            System.out.println("law 2");
+            return new Law2();
+
+        }
+        else if (s.equals("Third Law")) {
+            System.out.println("law 3");
+            return new Law3();
+        } else
+            return new Law1();
     }
 
-
-    public void law1() {
-        title.setText("First Law");
-        menuBtn.setText("First Law");
-        forceInput.setText("0");
-        velocityInput.setDisable(false);
-        massInput.setDisable(true);
-        forceInput.setDisable(true);
-        timeInput.setDisable(true);
-        wall.setVisible(false);
-        start.setDisable(false);
+    public void changeLayout(ActionEvent event) {
+        String xD = ((MenuItem)event.getSource()).getText();
+        this.title.setText(xD);
+        System.out.println(xD);
+        Law choice = getCase();
+//        System.out.println("Im here!");
+        choice.changeLayout(this);
     }
 
-    public void law2() {
-        title.setText("Second Law");
-        menuBtn.setText("Second Law");
-        velocityInput.setDisable(true);
-        forceInput.setDisable(false);
-        massInput.setDisable(false);
-        timeInput.setDisable(false);
-        wall.setVisible(false);
-        start.setDisable(false);
+    public void start() {
+        Law choice = getCase();
+        choice.play(this);
     }
 
-    public void law3() {
-        title.setText("Third Law");
-        menuBtn.setText("Third Law");
-        object.setTranslateX(0);
-        velocityInput.setDisable(false);
-        forceInput.setDisable(true);
-        massInput.setDisable(true);
-        timeInput.setDisable(true);
-        start.setDisable(false);
-        wall.setVisible(true);
-    }
-
-    public void action1() {
-        ob.setV(Double.parseDouble(velocityInput.getText()));
-        TranslateTransition transition = AnimationUtils.createTranslateTransition(this.object, 1000, 1000 / ob.getV());
-        ob.setAnimation(transition);
-        ob.play();
-    }
-
-    public void action2() {
-        double time = Double.parseDouble(timeInput.getText());
-        ob.setMass(Double.parseDouble(massInput.getText()));
-        double frictionForce = Physics.getFrictionForce(ob.getMass());
-        double force = Double.parseDouble(forceInput.getText());
-        ob.setA(Physics.getAcceleration(force - frictionForce, ob.getMass()));
-        double s1 = Physics.getDistance(0, ob.getA(), time);
-        TranslateTransition trans1 = AnimationUtils.createTranslateTransition(this.object, s1, time);
-        double v1 = Physics.getVelocityByTime(0, ob.getA(), time);
-        ob.setA(Physics.getAcceleration(frictionForce, ob.getMass()));
-        double time2 = Physics.getTimeByVelocity(0, v1, -ob.getA());
-        double s2 = Physics.getDistance(v1, -ob.getA(), time2);
-        TranslateTransition trans2 = AnimationUtils.createTranslateTransition(this.object, s2, time2);
-        SequentialTransition transition = AnimationUtils.createSequentialTransition(this.object, trans1, trans2);
-        ob.setAnimation(transition);
-        ob.play();
-    }
-
-    public void action3() {
-        ob.setV(Double.parseDouble(velocityInput.getText()));
-        TranslateTransition trans1 = AnimationUtils.createTranslateTransition(this.object, 400, 400 / ob.getV());
-        TranslateTransition trans2 = AnimationUtils.createTranslateTransition(this.object, -1000, 1000 / ob.getV());
-        SequentialTransition transition = AnimationUtils.createSequentialTransition(this.object, trans1, trans2);
-        ob.setAnimation(transition);
-        ob.play();
-    }
 }
 
